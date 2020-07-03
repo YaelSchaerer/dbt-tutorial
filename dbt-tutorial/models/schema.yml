@@ -2,8 +2,10 @@ version: 2
 
 models:
   - name: customers
+    description: one record per customer with their order specs over the whole relationship
     columns:
       - name: custkey
+        description: primary key of the model
         tests:
           - unique
           - not_null
