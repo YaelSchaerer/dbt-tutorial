@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: customers
+    columns:
+      - name: custkey
+        tests:
+          - unique
+          - not_null
+
+
+  - name: stg_customers
+    columns:
+      - name: custkey
+        tests:
+          - unique
+          - not_null
+
+
+  - name: stg_orders
+    columns:
+      - name: O_ORDERKEY
+        tests:
+          - unique
+          - not_null
+      - name: custkey
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: custkey
+      - name: O_ORDERSTATUS
+        tests:
+          - accepted_values: 
+              values: [ 'F','O', 'P' ]
+
+      
